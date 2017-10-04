@@ -25,7 +25,7 @@ class CursorSpec extends org.specs2.mutable.Specification
   "ReactiveMongo" should {
     group1 // include fixture insert
 
-    "stop on error" >> {
+    /*"stop on error" >> {
       lazy val cursorDrv = new MongoDriver
       lazy val cursorCon =
         cursorDrv.connection(List(primaryHost), DefaultOptions)
@@ -902,7 +902,7 @@ class CursorSpec extends org.specs2.mutable.Specification
       "Driver instance must be closed" in {
         cursorDrv.close(timeout) must not(throwA[Exception])
       }
-    }
+    }*/
 
     /*
     "Benchmark" in { implicit ee: EE =>
@@ -942,10 +942,12 @@ class CursorSpec extends org.specs2.mutable.Specification
     } tag "benchmark"
      */
   }
+  /*
 
   "Tailable cursor" should {
     tailableSpec
   }
+  */
 
   // ---
 
