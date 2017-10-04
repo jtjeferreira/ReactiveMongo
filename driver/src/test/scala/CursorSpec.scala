@@ -31,10 +31,12 @@ class CursorSpec extends org.specs2.mutable.Specification
   "ReactiveMongo" should {
     group1
 
+    /*
     @inline def con(drv: MongoDriver) =
       drv.connection(List(primaryHost), DefaultOptions)
 
     def scol(n: String = collName, failover: FailoverStrategy = failoverStrategy, tout: FiniteDuration = timeout, driver: MongoDriver, specCon: => MongoConnection = con(driver))(implicit ec: ExecutionContext) = Await.result(specCon.database(Common.commonDb, failover).map(_(n)), tout)
+
 
     "stop on error" >> {
       lazy val drv = new MongoDriver
@@ -951,11 +953,14 @@ class CursorSpec extends org.specs2.mutable.Specification
         drv.close(timeout) must not(throwA[Exception])
       }
     }
+    */
   }
 
+  /*
   "Tailable cursor" should {
     tailableSpec
   }
+  */
 
   // ---
 

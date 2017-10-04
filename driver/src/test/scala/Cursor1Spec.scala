@@ -14,7 +14,10 @@ trait Cursor1Spec { spec: CursorSpec =>
     s"insert $nDocs records" in { implicit ee: EE =>
       val futs: Seq[Future[Unit]] = for (i <- 0 until nDocs) yield {
         coll.insert(BSONDocument(
-          "i" -> i, "record" -> s"record$i")).map(_ => {})
+          "i" -> i,
+          "record" -> s"record$i",
+          "junk" -> Seq.fill(100)(s"junk"),
+          "junk2" -> Seq.fill(100)(s"junk"))).map(_ => {})
       }
 
       Future.sequence(futs).map { _ =>
@@ -22,6 +25,7 @@ trait Cursor1Spec { spec: CursorSpec =>
       } aka "fixtures" must beEqualTo({}).await(1, timeout)
     }
 
+    /*
     { // headOption
       def headOptionSpec(c: BSONCollection, timeout: FiniteDuration) = {
         "find first document when matching" in { implicit ee: EE =>
@@ -48,13 +52,14 @@ trait Cursor1Spec { spec: CursorSpec =>
       coll.find(matchAll("one")).one[BSONDocument].
         aka("findOne") must beSome[BSONDocument].await(1, timeout)
     }
+    */
 
     def foldSpec1(c: BSONCollection, timeout: FiniteDuration) = {
-      "get 10 first docs" in { implicit ee: EE =>
-        c.find(matchAll("cursorspec1")).cursor().collect[List](10).
-          map(_.size) aka "result size" must beEqualTo(10).await(1, timeout)
+      "get 10000 first docs" in { implicit ee: EE =>
+        c.find(matchAll("cursorspec1")).cursor().collect[List](10000).
+          map(_.size) aka "result size" must beEqualTo(10000).await(1, timeout)
       }
-
+      /*
       { // .fold
         "fold all the documents" in { implicit ee: EE =>
           c.find(matchAll("cursorspec2")).cursor().fold(0)(
@@ -157,12 +162,14 @@ trait Cursor1Spec { spec: CursorSpec =>
           }
         }
       }
+      */
     }
 
     "with the default connection" >> {
       foldSpec1(coll, timeout)
     }
 
+    /*
     "with the slow connection" >> {
       foldSpec1(slowColl, slowTimeout)
     }
@@ -224,5 +231,6 @@ trait Cursor1Spec { spec: CursorSpec =>
         timeoutSpec(slowColl, slowTimeout)
       }
     }
+    */
   }
 }
