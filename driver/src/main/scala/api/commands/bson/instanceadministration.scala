@@ -13,6 +13,7 @@ import reactivemongo.bson.{
   BSONValue,
   BSONWriter
 }
+import reactivemongo.bson.DefaultBSONHandlers._
 
 import reactivemongo.api.BSONSerializationPack
 import reactivemongo.api.commands._

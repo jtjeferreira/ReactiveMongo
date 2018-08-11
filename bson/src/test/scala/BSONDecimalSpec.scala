@@ -17,6 +17,7 @@ class BSONDecimalSpec extends org.specs2.mutable.Specification {
     BSONDecimalBufferHandler,
     BSONDocumentBufferHandler
   }
+  import DefaultBSONHandlers._
 
   "BSONDecimal" should {
     lazy val fixtures1 =

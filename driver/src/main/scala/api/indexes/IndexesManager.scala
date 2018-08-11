@@ -25,6 +25,8 @@ import reactivemongo.bson.{
   BSONString
 }
 
+import reactivemongo.bson.DefaultBSONHandlers._
+
 import reactivemongo.core.protocol.MongoWireVersion
 
 import reactivemongo.api.{

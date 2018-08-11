@@ -1,6 +1,7 @@
 package reactivemongo
 
 import reactivemongo.bson.{ BSONBinary, BSONDocument }
+import reactivemongo.bson.DefaultBSONHandlers._
 
 import reactivemongo.api.{ BSONSerializationPack, ReplicaSetSession }
 

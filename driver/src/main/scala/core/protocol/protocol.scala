@@ -23,6 +23,7 @@ import reactivemongo.io.netty.buffer.{ ByteBuf, Unpooled }
 import reactivemongo.io.netty.channel.{ ChannelHandlerContext, ChannelId }
 
 import reactivemongo.bson.{ BSONBooleanLike, BSONDocument, BSONNumberLike }
+import reactivemongo.bson.DefaultBSONHandlers._
 
 import reactivemongo.core.netty.{ BufferSequence, ChannelBufferReadableBuffer }
 import reactivemongo.core.errors.DatabaseException

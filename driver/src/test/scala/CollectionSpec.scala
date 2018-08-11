@@ -5,6 +5,7 @@ import reactivemongo.api._, collections.bson._
 import reactivemongo.api.commands.WriteConcern
 
 import reactivemongo.bson._
+import reactivemongo.bson.DefaultBSONHandlers._
 
 import org.specs2.concurrent.ExecutionEnv
 

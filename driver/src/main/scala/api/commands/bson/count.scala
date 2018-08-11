@@ -2,6 +2,7 @@ package reactivemongo.api.commands.bson
 
 import reactivemongo.api.BSONSerializationPack
 import reactivemongo.api.commands._
+import reactivemongo.bson.DefaultBSONHandlers._
 
 @deprecated("Use new collection.count", "0.16.0")
 object BSONCountCommand extends CountCommand[BSONSerializationPack.type] {

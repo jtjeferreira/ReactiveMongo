@@ -35,6 +35,8 @@ import reactivemongo.core.actors.{
 
 import reactivemongo.api.commands.ResultCursor
 
+import reactivemongo.bson.DefaultBSONHandlers._
+
 @deprecated("Will be private/internal", "0.16.0")
 object DefaultCursor {
   import Cursor.{ ErrorHandler, State, Cont, Fail, logger }

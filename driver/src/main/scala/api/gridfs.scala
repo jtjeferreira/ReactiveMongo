@@ -38,6 +38,8 @@ import reactivemongo.bson.{
   Subtype
 }
 
+import reactivemongo.bson.DefaultBSONHandlers._
+
 import reactivemongo.api.{
   Cursor,
   CursorProducer,

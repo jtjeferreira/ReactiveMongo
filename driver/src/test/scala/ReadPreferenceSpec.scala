@@ -1,4 +1,5 @@
 import reactivemongo.bson.{ BSONArray, BSONDocument }
+import reactivemongo.bson.DefaultBSONHandlers._
 import reactivemongo.api.ReadPreference
 
 import org.specs2.specification.core.Fragments

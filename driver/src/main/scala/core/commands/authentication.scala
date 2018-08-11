@@ -8,6 +8,7 @@ import reactivemongo.bson.{
   BSONString,
   Subtype
 }
+import reactivemongo.bson.DefaultBSONHandlers._
 import reactivemongo.core.protocol.Response
 
 // --- MongoDB SCRAM-SHA1 authentication ---

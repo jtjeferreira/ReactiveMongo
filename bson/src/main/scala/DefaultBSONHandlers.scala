@@ -30,8 +30,7 @@ class VariantBSONReaderWrapper[B <: BSONValue, T](reader: VariantBSONReader[B, T
   def read(b: B) = reader.read(b)
 }
 
-trait DefaultBSONHandlers extends LowPrioBSONHandlers {
-  import scala.language.higherKinds
+trait DefaultBSONHandlers extends IdentityBSONHandlers with LowPrioBSONHandlers {
 
   implicit object BSONIntegerHandler extends BSONHandler[BSONInteger, Int] {
     def read(int: BSONInteger) = int.value
@@ -120,10 +119,37 @@ trait DefaultBSONHandlers extends LowPrioBSONHandlers {
   implicit def bsonBooleanLikeReader[B <: BSONValue] =
     new BSONBooleanLikeReader[B]
 
+  implicit def findWriter[T](implicit writer: VariantBSONWriter[T, _ <: BSONValue]): BSONWriter[T, _ <: BSONValue] =
+    new VariantBSONWriterWrapper(writer)
+
+  implicit def MapReader[K, V](implicit keyReader: BSONReader[BSONString, K], valueReader: BSONReader[_ <: BSONValue, V]): BSONDocumentReader[Map[K, V]] =
+    new BSONDocumentReader[Map[K, V]] {
+      def read(bson: BSONDocument): Map[K, V] =
+        bson.elements.map { element =>
+          keyReader.read(BSONString(element.name)) -> element.value.seeAsTry[V].get
+        }(scala.collection.breakOut)
+    }
+
+  implicit def MapWriter[K, V](implicit keyWriter: BSONWriter[K, BSONString], valueWriter: BSONWriter[V, _ <: BSONValue]): BSONDocumentWriter[Map[K, V]] =
+    new BSONDocumentWriter[Map[K, V]] {
+      def write(inputMap: Map[K, V]): BSONDocument = {
+        val elements = inputMap.map { tuple =>
+          BSONElement(keyWriter.write(tuple._1).value, valueWriter.write(tuple._2))
+        }
+        BSONDocument(elements)
+      }
+    }
+}
+
+trait IdentityBSONHandlers {
+
   abstract class IdentityBSONConverter[T <: BSONValue](implicit m: Manifest[T]) extends BSONReader[T, T] with BSONWriter[T, T] {
     override def write(t: T): T = m.runtimeClass.cast(t).asInstanceOf[T]
+
     override def writeOpt(t: T): Option[T] = if (m.runtimeClass.isInstance(t)) Some(t.asInstanceOf[T]) else None
+
     override def read(bson: T): T = m.runtimeClass.cast(bson).asInstanceOf[T]
+
     override def readOpt(bson: T): Option[T] = if (m.runtimeClass.isInstance(bson)) Some(bson.asInstanceOf[T]) else None
   }
 
@@ -160,29 +186,10 @@ trait DefaultBSONHandlers extends LowPrioBSONHandlers {
 
   implicit object BSONJavaScriptIdentity extends BSONReader[BSONJavaScript, BSONJavaScript] with BSONWriter[BSONJavaScript, BSONJavaScript] {
     def read(b: BSONJavaScript) = b
+
     def write(b: BSONJavaScript) = b
   }
 
-  implicit def findWriter[T](implicit writer: VariantBSONWriter[T, _ <: BSONValue]): BSONWriter[T, _ <: BSONValue] =
-    new VariantBSONWriterWrapper(writer)
-
-  implicit def MapReader[K, V](implicit keyReader: BSONReader[BSONString, K], valueReader: BSONReader[_ <: BSONValue, V]): BSONDocumentReader[Map[K, V]] =
-    new BSONDocumentReader[Map[K, V]] {
-      def read(bson: BSONDocument): Map[K, V] =
-        bson.elements.map { element =>
-          keyReader.read(BSONString(element.name)) -> element.value.seeAsTry[V].get
-        }(scala.collection.breakOut)
-    }
-
-  implicit def MapWriter[K, V](implicit keyWriter: BSONWriter[K, BSONString], valueWriter: BSONWriter[V, _ <: BSONValue]): BSONDocumentWriter[Map[K, V]] =
-    new BSONDocumentWriter[Map[K, V]] {
-      def write(inputMap: Map[K, V]): BSONDocument = {
-        val elements = inputMap.map { tuple =>
-          BSONElement(keyWriter.write(tuple._1).value, valueWriter.write(tuple._2))
-        }
-        BSONDocument(elements)
-      }
-    }
 }
 
 trait LowPrioBSONHandlers {

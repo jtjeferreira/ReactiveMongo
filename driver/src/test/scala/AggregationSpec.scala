@@ -4,6 +4,7 @@ import scala.concurrent.Future
 import scala.concurrent.duration.FiniteDuration
 
 import reactivemongo.bson._
+import reactivemongo.bson.DefaultBSONHandlers._
 import reactivemongo.api.{ Cursor, CursorProducer, WrappedCursor }
 import reactivemongo.api.collections.bson.BSONCollection
 

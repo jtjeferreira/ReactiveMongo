@@ -23,6 +23,8 @@ class HandlerSpec extends org.specs2.mutable.Specification {
 
   section("unit")
 
+  import DefaultBSONHandlers._
+
   "BSONBinary" should {
     import reactivemongo.bson.buffer.ArrayReadableBuffer
 

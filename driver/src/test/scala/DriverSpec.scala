@@ -5,6 +5,7 @@ import akka.actor.{ Actor, ActorRef, ActorSystem, Props }
 
 import reactivemongo.api.{ MongoConnectionOptions, X509Authentication }
 import reactivemongo.bson.BSONDocument
+import reactivemongo.bson.DefaultBSONHandlers._
 
 import reactivemongo.core.actors.{
   PrimaryAvailable,

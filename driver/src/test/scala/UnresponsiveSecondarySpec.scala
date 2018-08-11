@@ -9,6 +9,7 @@ import akka.testkit.TestActorRef
 import org.specs2.matcher.MatchResult
 
 import reactivemongo.bson.BSONDocument
+import reactivemongo.bson.DefaultBSONHandlers._
 
 import reactivemongo.core.nodeset.{
   Authenticated,

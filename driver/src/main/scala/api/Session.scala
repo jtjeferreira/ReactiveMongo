@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.{ AtomicLong, AtomicReference }
 import scala.concurrent.{ ExecutionContext, Future }
 
 import reactivemongo.bson.{ BSONDocument, BSONTimestamp }
+import reactivemongo.bson.DefaultBSONHandlers._
 import reactivemongo.core.protocol.Response
 
 /**

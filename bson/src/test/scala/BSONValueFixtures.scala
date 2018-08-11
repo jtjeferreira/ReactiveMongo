@@ -3,6 +3,8 @@ package reactivemongo
 import reactivemongo.bson._
 
 object BSONValueFixtures {
+  import DefaultBSONHandlers._
+
   val bsonDoubleFixtures = List(
     BSONDouble(0D), BSONDouble(-2D), BSONDouble(12.34D))
 

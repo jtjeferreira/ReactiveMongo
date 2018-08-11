@@ -10,6 +10,7 @@ import reactivemongo.bson.{
   BSONDocumentWriter,
   BSONValue
 }
+import reactivemongo.bson.DefaultBSONHandlers._
 
 @deprecated("Will be private/internal", "0.16.0")
 object BSONFindAndModifyCommand

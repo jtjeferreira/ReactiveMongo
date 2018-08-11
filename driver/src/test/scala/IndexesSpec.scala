@@ -2,6 +2,7 @@ import scala.concurrent.Future
 import scala.concurrent.duration.FiniteDuration
 
 import reactivemongo.bson.{ BSONArray, BSONDocument, BSONInteger }
+import reactivemongo.bson.DefaultBSONHandlers._
 import reactivemongo.api.indexes.{ Index, IndexType }, IndexType.{
   Hashed,
   Geo2D,

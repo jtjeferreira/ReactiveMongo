@@ -22,6 +22,7 @@ class MacroSpec extends org.specs2.mutable.Specification {
 
   import MacroTest._
   import BSONDocument.pretty
+  import reactivemongo.bson.DefaultBSONHandlers._
 
   "Formatter" should {
     "handle primitives" in {

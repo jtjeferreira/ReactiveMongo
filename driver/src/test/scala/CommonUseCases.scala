@@ -3,6 +3,7 @@ import scala.concurrent.duration.FiniteDuration
 
 import reactivemongo.api._
 import reactivemongo.bson._
+import reactivemongo.bson.DefaultBSONHandlers._
 import reactivemongo.api.collections.bson.BSONCollection
 import reactivemongo.api.commands.bson.BSONCountCommand._
 import reactivemongo.api.commands.bson.BSONCountCommandImplicits._

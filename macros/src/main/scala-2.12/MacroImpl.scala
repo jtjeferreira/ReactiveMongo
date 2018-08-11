@@ -343,7 +343,7 @@ private object MacroImpl {
           c.Expr[String](q"${tpe.typeSymbol.name.decodedName.toString}")
         } else c.Expr[String](q"${tpe.typeSymbol.fullName}")
 
-        reify(("className", BSONStringHandler.write(name.splice)))
+        reify(("className", BSONString(name.splice)))
       }
       else None
     }

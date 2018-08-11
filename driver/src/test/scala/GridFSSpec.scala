@@ -4,6 +4,7 @@ import scala.concurrent.duration.FiniteDuration
 import play.api.libs.iteratee._
 
 import reactivemongo.bson._
+import reactivemongo.bson.DefaultBSONHandlers._
 import reactivemongo.bson.utils.Converters
 
 import reactivemongo.api.BSONSerializationPack

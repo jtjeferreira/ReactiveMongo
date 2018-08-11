@@ -22,6 +22,7 @@ import reactivemongo.bson.{
   BSONDocumentWriter,
   BSONNumberLike
 }
+import reactivemongo.bson.DefaultBSONHandlers._
 
 /**
  * {{{

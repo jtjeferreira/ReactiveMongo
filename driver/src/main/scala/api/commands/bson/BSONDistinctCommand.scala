@@ -2,6 +2,7 @@ package reactivemongo.api.commands.bson
 
 import reactivemongo.core.protocol.MongoWireVersion
 import reactivemongo.bson._
+import reactivemongo.bson.DefaultBSONHandlers._
 import reactivemongo.api.BSONSerializationPack
 import reactivemongo.api.commands.{ DistinctCommand, ResolvedCollectionCommand }
 

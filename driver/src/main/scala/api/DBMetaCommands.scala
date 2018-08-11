@@ -9,6 +9,7 @@ import reactivemongo.bson.{
   BSONRegex,
   BSONString
 }
+import reactivemongo.bson.DefaultBSONHandlers._
 
 import reactivemongo.api.collections.bson.{
   BSONCollection,

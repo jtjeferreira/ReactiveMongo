@@ -116,7 +116,7 @@ object BSONSerializationPack extends SerializationPack { self =>
   }
 
   private object Decoder
-    extends SerializationPack.Decoder[BSONSerializationPack.type] {
+    extends SerializationPack.Decoder[BSONSerializationPack.type] with DefaultBSONHandlers {
     protected[reactivemongo] val pack = self
 
     def asDocument(value: BSONValue): Option[BSONDocument] = value match {

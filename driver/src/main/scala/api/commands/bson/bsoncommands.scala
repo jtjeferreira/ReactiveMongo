@@ -6,6 +6,7 @@ import reactivemongo.bson.{
   BSONDocumentReader,
   BSONDocumentWriter
 }
+import reactivemongo.bson.DefaultBSONHandlers._
 
 import reactivemongo.api.ReadConcern
 import reactivemongo.api.commands.{ Command, CommandError, UnitBox }

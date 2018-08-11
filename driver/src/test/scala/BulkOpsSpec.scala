@@ -5,6 +5,7 @@ import scala.concurrent.{ ExecutionContext, Future }
 import org.specs2.concurrent.ExecutionEnv
 
 import reactivemongo.bson.BSONDocument
+import reactivemongo.bson.DefaultBSONHandlers._
 
 import reactivemongo.api.collections.BulkOps._
 

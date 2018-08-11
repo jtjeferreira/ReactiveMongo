@@ -1,6 +1,7 @@
 package reactivemongo.api.commands.bson
 
 import reactivemongo.bson.{ BSONDocument, BSONDocumentReader, BSONNumberLike }
+import reactivemongo.bson.DefaultBSONHandlers._
 
 import reactivemongo.core.protocol.MongoWireVersion
 import reactivemongo.api.BSONSerializationPack

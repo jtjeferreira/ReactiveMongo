@@ -9,6 +9,7 @@ import reactivemongo.bson.{
 import reactivemongo.bson.Macros.Annotations.{ Flatten, Key, Ignore }
 
 object MacroTest {
+  import reactivemongo.bson.DefaultBSONHandlers._
   type Handler[A] = BSONDocumentReader[A] with BSONDocumentWriter[A] with BSONHandler[BSONDocument, A]
 
   case class Person(firstName: String, lastName: String)

@@ -15,7 +15,7 @@ package reactivemongo.bson
  *     "salary" -> 12345L, "inventory" -> array("foo", 7.8, 0L, false)))
  * }}}
  */
-object `package` extends DefaultBSONHandlers {
+object `package` {
   // DSL helpers:
 
   /** Returns an empty document. */

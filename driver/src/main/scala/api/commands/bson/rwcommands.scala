@@ -3,6 +3,7 @@ package reactivemongo.api.commands.bson
 import reactivemongo.api.BSONSerializationPack
 import reactivemongo.api.commands._
 import reactivemongo.bson._
+import reactivemongo.bson.DefaultBSONHandlers._
 
 @deprecated("Internally use CommandCodecs", "0.16.0")
 object BSONGetLastErrorImplicits {

@@ -220,18 +220,24 @@ case class BSONArray(stream: Stream[Try[BSONValue]])
   /** Creates a new [[BSONArray]] containing all the elements of this one and the elements of the given document. */
   def merge(doc: BSONArray): BSONArray = new BSONArray(stream ++ doc.stream)
 
+  def merge(value: BSONValue): BSONArray = new BSONArray(stream :+ Try(value))
+
   /** Creates a new [[BSONArray]] containing all the elements of this one and the given `elements`. */
   def merge(values: Producer[BSONValue]*): BSONArray =
     new BSONArray(stream ++ values.flatMap { v =>
-      v.generate().map(value => Try(value))
+      v.generate().map(Try(_))
     }.toStream)
 
   /** Returns a [[BSONArray]] with the given value prepended to its elements. */
   def prepend(value: Producer[BSONValue]): BSONArray =
     new BSONArray(value.generate().map(Try(_)) ++: stream)
 
+  def prepend(value: BSONValue): BSONArray =
+    new BSONArray(Try(value) +: stream)
+
   /** Alias for [[BSONArray.prepend]] */
   def +:(value: Producer[BSONValue]): BSONArray = prepend(value)
+  def +:(value: BSONValue): BSONArray = prepend(value)
 
   /** Alias for the corresponding `merge` */
   @inline def ++(array: BSONArray): BSONArray = merge(array)

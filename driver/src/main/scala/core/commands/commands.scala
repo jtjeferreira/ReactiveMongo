@@ -17,6 +17,7 @@ package reactivemongo.core.commands
 
 import reactivemongo.api.ReadPreference
 import reactivemongo.bson.{ BSONDocument, BSONNumberLike }
+import reactivemongo.bson.DefaultBSONHandlers.bsonNumberLikeReader
 import reactivemongo.core.errors.ReactiveMongoException
 import reactivemongo.core.protocol.{ RequestMaker, Query, QueryFlags, Response }
 import reactivemongo.core.netty._

@@ -8,6 +8,7 @@ import reactivemongo.core.protocol.{
   ResponseInfo
 }
 import reactivemongo.bson.BSONDocument
+import reactivemongo.bson.DefaultBSONHandlers._
 
 import org.specs2.specification.core.Fragments
 import org.specs2.concurrent.ExecutionEnv

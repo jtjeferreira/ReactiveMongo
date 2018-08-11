@@ -22,6 +22,8 @@ class TypeSpec extends Specification {
 
   section("unit")
 
+  import DefaultBSONHandlers._
+
   "BSON document" should {
     "be empty" in {
       BSONDocument().elements must beEmpty and (

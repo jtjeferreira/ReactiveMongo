@@ -3,6 +3,7 @@ package reactivemongo
 import java.util.Arrays
 
 import reactivemongo.bson._
+import reactivemongo.bson.DefaultBSONHandlers._
 import reactivemongo.core.netty._, ChannelBufferWritableBuffer.{
   single => makeBuffer
 }, ChannelBufferReadableBuffer.{ document => makeDocument }

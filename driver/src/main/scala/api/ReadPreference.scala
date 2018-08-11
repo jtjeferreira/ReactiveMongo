@@ -3,6 +3,8 @@ package reactivemongo.api
 // BSONDocumentWriter
 import reactivemongo.bson.BSONDocument
 
+import reactivemongo.bson.DefaultBSONHandlers._
+
 /**
  * MongoDB Read Preferences enable to read from primary or secondaries
  * with a predefined strategy.
